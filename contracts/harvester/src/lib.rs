@@ -1,6 +1,12 @@
 #![no_std]
 use soroban_sdk::{contract, contractimpl, Env};
 
+/// Permissionless yield harvester that claims AMM trading fees and compounds
+/// them into [`StrategyVault`].
+///
+/// Any caller may invoke `harvest()` at any time; the contract trustlessly
+/// distributes a 10 bps bounty on the harvested yield to the caller as an
+/// incentive, with the remainder forwarded to `StrategyVault`.
 #[contract]
 pub struct Harvester;
 
